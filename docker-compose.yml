@@ -1,0 +1,53 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+    
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - 8081:8081    
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=mongo
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
+  frontend:
+   image: frontend:v1
+   build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+   restart: always
+   container_name: frontend
+   ports:
+      - 3000:80
+
+  backend:
+   image: backend:v1
+   restart: always
+   build: 
+      context: ./backend
+      dockerfile: Dockerfile
+   container_name: backend
+   ports:
+      - 5000:5000
+   
+networks:
+  default:
+    external:
+      name: MongoNetwork
+
+volumes:
+ mongo-data: 
+  driver: local
