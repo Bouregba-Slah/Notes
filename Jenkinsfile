@@ -20,7 +20,7 @@ pipeline{
         }
         stage('Login to Docker Hub') {          
            steps{                          
-                sh 'docker login -u "bouregbaslah" -p "BouregbaSlah@1987"'   
+                sh 'docker login -u bouregbaslah -p BouregbaSlah@1987'   
                   
                 echo 'Login Completed'      
             }
