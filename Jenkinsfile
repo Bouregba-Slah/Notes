@@ -14,13 +14,13 @@ pipeline{
         }
         stage('Docker-compose down build up') {
             steps {
-                sh 'docker-compose build -t backend'
+                sh 'docker-compose build backend'
                 
             }
         }
         stage('Login to Docker Hub') {          
            steps{                          
-                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW | docker login -u $DOCKERHUB_CREDENTIALS_LOCAL_USR --password-stdin'                     
+                sh 'docker login -u $DOCKERHUB_CREDENTIALS_LOCAL_USR -p $DOCKERHUB_CREDENTIALS_LOCAL_PSW'                     
                 echo 'Login Completed'      
             }
         } 
