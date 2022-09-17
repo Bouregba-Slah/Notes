@@ -20,5 +20,13 @@ pipeline{
                 
             }
         } 
+        stage('Docker-compose down build up') {
+            steps {
+                sh 'docker-compose build frontend'
+                sh 'docker login -u bouregbaslah -p BouregbaSlah@1987'
+                sh 'docker push bouregbaslah/notesfrontend:v1'
+                
+            }
+        } 
     }
 }
