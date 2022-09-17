@@ -15,7 +15,7 @@ pipeline{
         stage('Docker-compose down build up') {
             steps {
                 sh 'docker-compose build backend'
-                sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+                sh 'docker login -u bouregbaslah -p BouregbaSlah@1987'
                 sh 'docker push bouregbaslah/notesbackend:v1'
                 
             }
