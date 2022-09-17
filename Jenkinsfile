@@ -13,15 +13,11 @@ pipeline{
             }
         }
         
-        stage('Login to Docker Hub') {          
-           steps{                          
-                sh 'docker login -u bouregbaslah -p BouregbaSlah@1987'    
-                echo 'Login Completed'      
-            }
-        } 
         stage('Push Image client to Docker Hub') {         
-           steps{                            
-               sh 'docker push bouregbaslah/notes:latest'           
+           steps{    
+               sh 'docker-compose build backend'  
+               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                      
+               sh 'docker push bouregbaslah/notesbackend:v1'           
                echo 'Push Image Completed'       
          }
         } 

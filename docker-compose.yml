@@ -24,7 +24,7 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongodb
 
   frontend:
-   image: frontend:v1
+   image: bouregbaslah/notesfrontend:v1
    build: 
       context: ./frontend
       dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
       - 3000:80
 
   backend:
-   image: backend:v1
+   image: bouregbaslah/notesbackend:v1
    restart: always
    build: 
       context: ./backend
