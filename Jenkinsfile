@@ -12,9 +12,9 @@ pipeline{
                 sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW'
             }
         }
-        stage('Docker-compose down build up) {
+        stage('Docker-compose down build up') {
             steps {
-                sh 'cd backend && docker build -t backend .'
+                sh 'docker-compose build -t backend'
                 
             }
         }
@@ -26,7 +26,7 @@ pipeline{
         } 
         stage('Push Image client to Docker Hub') {         
            steps{                            
-               sh 'docker push bouregbaslah/NOTES:latest'           
+               sh 'docker push bouregbaslah/notes:latest'           
                echo 'Push Image Completed'       
          }
         } 
