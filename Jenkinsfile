@@ -15,7 +15,7 @@ pipeline{
         stage('Docker-compose backend') {
             steps {
                 sh 'docker-compose build backend'
-                sh 'docker login -u bouregbaslah -p BouregbaSlah@1987'
+                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW | docker login -u $DOCKERHUB_CREDENTIALS_LOCAL_USR --password-stdin'
                 sh 'docker push bouregbaslah/notesbackend:v1'
                 
             }
@@ -23,11 +23,10 @@ pipeline{
         stage('Docker-compose frontend') {
             steps {
                 sh 'docker-compose build frontend'
-                sh 'docker login -u bouregbaslah -p BouregbaSlah@1987'
+                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW | docker login -u $DOCKERHUB_CREDENTIALS_LOCAL_USR --password-stdin'
                 sh 'docker push bouregbaslah/notesfrontend:v1'
                 
             }
         } 
-        
     }
 }
