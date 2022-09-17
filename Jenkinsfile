@@ -12,15 +12,11 @@ pipeline{
                 sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW'
             }
         }
-        stage('Docker-compose down build up') {
-            steps {
-                sh 'docker-compose build -t backend'
-                
-            }
+        
         }
         stage('Login to Docker Hub') {          
            steps{                          
-                sh 'docker login -u bouregbaslah -p uregbaSlah@1987'    
+                sh 'docker login -u bouregbaslah -p BouregbaSlah@1987'    
                 echo 'Login Completed'      
             }
         } 
