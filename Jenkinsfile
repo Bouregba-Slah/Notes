@@ -8,7 +8,8 @@ pipeline{
         
         stage('test') {
             steps { 
-                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_USR' 
+                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_USR'
+                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_USR'
                 sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW'
             }
         }
